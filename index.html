@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="SanketSpace — a responsive personal productivity web app by Sanket Sharma.">
+  <meta name="theme-color" content="#0b1020">
+  <title>SanketSpace | Sanket Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview"><span class="brand-icon">S</span><span>Sanket<span class="brand-accent">Space</span></span></a>
+      <div class="profile-mini"><div class="avatar">SS</div><div><strong>Sanket Sharma</strong><small>Personal workspace</small></div></div>
+      <p class="side-label">WORKSPACE</p>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a href="#overview" class="side-link active"><span>◫</span> Overview</a>
+        <a href="#tasks" class="side-link"><span>✓</span> My Tasks</a>
+        <a href="#notes" class="side-link"><span>▤</span> Quick Notes</a>
+        <a href="#focus" class="side-link"><span>◷</span> Focus Timer</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="sidebar-tip"><span>✦ A SMALL REMINDER</span><p>Progress is built one focused step at a time.</p></div><small>MADE BY SANKET · 2026</small></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><button id="menuButton" class="icon-button mobile-menu" aria-label="Open navigation">☰</button><div><p class="top-eyebrow">YOUR PERSONAL DASHBOARD</p><h1 id="greeting">Good day, Sanket 👋</h1></div><button id="themeButton" class="icon-button" aria-label="Toggle color theme" title="Toggle theme">☼</button></header>
+
+      <section id="overview" class="welcome-card">
+        <div><span class="welcome-tag">✦ YOUR SPACE. YOUR PACE.</span><h2>Make room for<br><span>great things.</span></h2><p>Plan your day, capture ideas and protect your focus — all in one place.</p><a href="#tasks" class="primary-button">Plan my day <span>↗</span></a></div>
+        <div class="welcome-art" aria-hidden="true"><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-core">S<span>.</span></div><div class="art-star star-one">✦</div><div class="art-star star-two">✧</div></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Workspace statistics">
+        <article class="stat-card"><div class="stat-icon mint">✓</div><span>TOTAL TASKS</span><strong id="totalStat">0</strong><small>Tasks in your list</small></article>
+        <article class="stat-card"><div class="stat-icon blue">◉</div><span>COMPLETED</span><strong id="doneStat">0</strong><small>Steps finished</small></article>
+        <article class="stat-card"><div class="stat-icon purple">▤</div><span>SAVED NOTES</span><strong id="notesStat">0</strong><small>Ideas captured</small></article>
+        <article class="stat-card"><div class="stat-icon orange">◷</div><span>FOCUS MINUTES</span><strong id="focusStat">0</strong><small>Minutes today</small></article>
+      </section>
+
+      <section id="tasks" class="content-section">
+        <div class="section-title"><div><span class="section-kicker">STAY ON TRACK</span><h2>Today's tasks</h2></div><span class="date-pill" id="todayDate"></span></div>
+        <div class="panel task-panel">
+          <form id="taskForm" class="add-form"><label class="sr-only" for="taskInput">Add a task</label><input id="taskInput" maxlength="90" placeholder="Add a task you want to finish..." required><select id="taskPriority" aria-label="Task priority"><option value="Normal">Normal</option><option value="High">High priority</option><option value="Low">Low priority</option></select><button class="primary-button" type="submit">Add task +</button></form>
+          <div class="task-toolbar"><div class="tabs" role="group" aria-label="Task filter"><button class="tab active" data-filter="all" type="button">All</button><button class="tab" data-filter="active" type="button">Active</button><button class="tab" data-filter="done" type="button">Completed</button></div><button id="clearCompleted" class="link-button" type="button">Clear completed</button></div>
+          <ul id="taskList" class="task-list" aria-live="polite"></ul><p id="taskEmpty" class="empty-message">You're all clear. Add a task to get started ✦</p>
+        </div>
+      </section>
+
+      <div class="lower-grid">
+        <section id="notes" class="content-section">
+          <div class="section-title"><div><span class="section-kicker">CATCH THAT THOUGHT</span><h2>Quick notes</h2></div></div>
+          <div class="panel notes-panel"><form id="noteForm"><label class="sr-only" for="noteInput">Write a note</label><textarea id="noteInput" maxlength="300" rows="3" placeholder="Write down an idea, reminder or thought..."></textarea><div class="note-form-bottom"><small>Up to 300 characters</small><button class="primary-button" type="submit">Save note +</button></div></form><div id="notesList" class="notes-list"></div><p id="notesEmpty" class="empty-message">Your ideas will show up here.</p></div>
+        </section>
+
+        <section id="focus" class="content-section">
+          <div class="section-title"><div><span class="section-kicker">ONE THING AT A TIME</span><h2>Focus room</h2></div></div>
+          <div class="panel focus-panel"><div class="focus-label">FOCUS SESSION</div><div class="timer-ring"><div><strong id="timerDisplay">25:00</strong><small>MINUTES</small></div></div><p id="timerMessage">Ready when you are. You’ve got this.</p><div class="timer-actions"><button id="startTimer" class="primary-button" type="button">Start</button><button id="resetTimer" class="secondary-button" type="button">Reset</button></div><div class="timer-presets"><button type="button" data-minutes="25" class="preset active">25 min</button><button type="button" data-minutes="15" class="preset">15 min</button><button type="button" data-minutes="5" class="preset">5 min</button></div></div>
+        </section>
+      </div>
+      <footer class="footer"><span>© <span id="year"></span> Sanket Sharma</span><span>Keep learning. Keep building. <b>✦</b></span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
